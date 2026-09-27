@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Orders</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>My Orders</h1>
+    <a href="/orders/new">Place a new order</a>
+    <ul>
+      <% orders.forEach(function(order) { %>
+        <li>
+          <a href="/orders/<%= order._id %>">
+            Order from <%= order.createdAt.toDateString() %> — <%= order.status %> — $<%= order.totalPrice.toFixed(2) %>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+    <% if (orders.length === 0) { %>
+      <p>You haven't placed any orders yet.</p>
+    <% } %>
+  </body>
+</html>

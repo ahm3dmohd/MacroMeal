@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Order</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>Place a new order</h1>
+    <form action="/orders" method="post">
+      <% mealItems.forEach(function(mealItem) { %>
+        <div>
+          <input type="hidden" name="mealItemIds" value="<%= mealItem._id %>" />
+          <label for="qty-<%= mealItem._id %>">
+            <%= mealItem.name %> — <%= mealItem.calories %> cal, $<%= mealItem.price %>
+          </label>
+          <input type="number" min="0" value="0" name="quantities" id="qty-<%= mealItem._id %>" />
+        </div>
+      <% }) %>
+      <button type="submit">Place order</button>
+    </form>
+  </body>
+</html>
