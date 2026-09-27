@@ -1,0 +1,67 @@
+/* ===== Base / Design tokens ===== */
+:root {
+  --color-bg: #f7f7f2;
+  --color-surface: #ffffff;
+  --color-text: #1c1f1d;
+  --color-text-secondary: #4b504c;
+  --color-primary: #1f6f4a;
+  --color-primary-dark: #16502f;
+  --color-border: #d7dad5;
+  --color-danger: #b3261e;
+  --color-danger-dark: #8c1e18;
+  --radius: 8px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+/* ===== Navbar ===== */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+  margin-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--color-border);
+}
+
+nav a {
+  font-weight: 600;
+}
