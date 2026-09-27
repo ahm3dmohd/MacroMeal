@@ -58,4 +58,15 @@ router.post("/", isSignedIn, async (req, res) => {
   res.redirect("/orders");
 });
 
+
+// this is for the owner only.
+router.get("/:id", isSignedIn, async (req, res) => {
+  const order = await Order.findById(req.params.id).populate("items.mealItem");
+  if (!order.owner.equals(req.session.user._id)) {
+    return res.send("You are not authorized to view this order.");
+  }
+  res.render("orders/orderShow.ejs", { order });
+}); 
+
+
 module.exports = router;

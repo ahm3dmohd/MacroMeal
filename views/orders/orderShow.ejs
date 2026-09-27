@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Details</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>Order from <%= order.createdAt.toDateString() %></h1>
+    <p>Status: <%= order.status %></p>
+
+    <h2>Items</h2>
+    <ul>
+      <% order.items.forEach(function(item) { %>
+        <li><%= item.quantity %> x <%= item.mealItem.name %></li>
+      <% }) %>
+    </ul>
+
+    <h2>Nutrition Totals</h2>
+    <p>Calories: <%= order.totalCalories %></p>
+    <p>Protein: <%= order.totalProtein %>g</p>
+    <p>Carbs: <%= order.totalCarbs %>g</p>
+    <p>Fat: <%= order.totalFat %>g</p>
+    <p>Total Price: $<%= order.totalPrice.toFixed(2) %></p>
+
+    <a href="/orders/<%= order._id %>/edit">Edit</a>
+    <form action="/orders/<%= order._id %>?_method=DELETE" method="post">
+      <button type="submit">Delete</button>
+    </form>
+  </body>
+</html>
