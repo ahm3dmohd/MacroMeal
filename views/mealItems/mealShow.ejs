@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= mealItem.name %></title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1><%= mealItem.name %></h1>
+    <p><%= mealItem.description %></p>
+    <p>Category: <%= mealItem.category %></p>
+    <p>Price: $<%= mealItem.price %></p>
+    <p>Calories: <%= mealItem.calories %></p>
+    <p>Protein: <%= mealItem.protein %>g</p>
+    <p>Carbs: <%= mealItem.carbs %>g</p>
+    <p>Fat: <%= mealItem.fat %>g</p>
+
+    <% if (user && mealItem.vendor._id.equals(user._id)) { %>
+      <a href="/mealitems/<%= mealItem._id %>/edit">Edit</a>
+      <form action="/mealitems/<%= mealItem._id %>?_method=DELETE" method="post">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+  </body>
+</html>

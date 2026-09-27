@@ -10,9 +10,11 @@ router.get("/sign-up", (req, res) => {
 });
 
 router.post("/sign-up", async (req, res) => {
-  const userInDatabase = await User.findOne({ username: req.body.username });
+  const userInDatabase = await User.findOne({
+    $or: [{ username: req.body.username }, { email: req.body.email }]
+  });
   if (userInDatabase) {
-    return res.send("Username already taken.");
+    return res.send("Username or email already taken.");
   }
 
   if (req.body.password !== req.body.confirmPassword) {
@@ -59,7 +61,7 @@ router.post("/sign-in", async (req, res) => {
   req.session.user = {
     username: userInDatabase.username,
     _id: userInDatabase._id,
-    role: userInDatabase
+    role: userInDatabase.role
   };
 
   res.redirect("/");

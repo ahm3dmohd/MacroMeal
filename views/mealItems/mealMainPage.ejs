@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meal Menu</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>Meal Menu</h1>
+    <% if (user && (user.role === "vendor" || user.role === "admin")) { %>
+      <a href="/mealitems/new">Add a meal item</a>
+    <% } %>
+    <ul>
+      <% mealItems.forEach(function(mealItem) { %>
+        <li>
+          <a href="/mealitems/<%= mealItem._id %>"><%= mealItem.name %></a>
+          — <%= mealItem.category %> — $<%= mealItem.price %> (<%= mealItem.calories %> cal)
+        </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
