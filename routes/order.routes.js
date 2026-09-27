@@ -132,5 +132,15 @@ router.put("/:id", isSignedIn, async (req, res) => {
   res.redirect(`/orders/${req.params.id}`);
 });
 
+// DELETE - owner only
+router.delete("/:id", isSignedIn, async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (!order.owner.equals(req.session.user._id)) {
+    return res.send("You are not authorized to delete this order.");
+  }
+  await order.deleteOne();
+  res.redirect("/orders");
+});
+
 
 module.exports = router;
