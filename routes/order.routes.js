@@ -68,5 +68,69 @@ router.get("/:id", isSignedIn, async (req, res) => {
   res.render("orders/orderShow.ejs", { order });
 }); 
 
+// EDIT - owner only, pre-fill existing quantities
+router.get("/:id/edit", isSignedIn, async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (!order.owner.equals(req.session.user._id)) {
+    return res.send("You are not authorized to edit this order.");
+  }
+  const mealItems = await MealItem.find({ available: true });
+
+  const quantityMap = {};
+  order.items.forEach((item) => {
+    quantityMap[item.mealItem.toString()] = item.quantity;
+  });
+
+  res.render("orders/orderEdit.ejs", { order, mealItems, quantityMap });
+});
+
+// UPDATE - owner only, recalculate totals
+router.put("/:id", isSignedIn, async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (!order.owner.equals(req.session.user._id)) {
+    return res.send("You are not authorized to update this order.");
+  }
+
+  const mealItemIds = [].concat(req.body.mealItemIds || []);
+  const quantities = [].concat(req.body.quantities || []);
+
+  const items = [];
+  let totalCalories = 0;
+  let totalProtein = 0;
+  let totalCarbs = 0;
+  let totalFat = 0;
+  let totalPrice = 0;
+
+  for (let i = 0; i < mealItemIds.length; i++) {
+    const quantity = Number(quantities[i]);
+    if (!quantity || quantity < 1) continue;
+
+    const mealItem = await MealItem.findById(mealItemIds[i]);
+    if (!mealItem) continue;
+
+    items.push({ mealItem: mealItem._id, quantity });
+
+    totalCalories += mealItem.calories * quantity;
+    totalProtein += mealItem.protein * quantity;
+    totalCarbs += mealItem.carbs * quantity;
+    totalFat += mealItem.fat * quantity;
+    totalPrice += mealItem.price * quantity;
+  }
+
+  if (items.length === 0) {
+    return res.send("Please select at least one meal item with a quantity of 1 or more.");
+  }
+
+  order.items = items;
+  order.totalCalories = totalCalories;
+  order.totalProtein = totalProtein;
+  order.totalCarbs = totalCarbs;
+  order.totalFat = totalFat;
+  order.totalPrice = totalPrice;
+  await order.save();
+
+  res.redirect(`/orders/${req.params.id}`);
+});
+
 
 module.exports = router;

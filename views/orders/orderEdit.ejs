@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Order</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>Edit order</h1>
+    <form action="/orders/<%= order._id %>?_method=PUT" method="post">
+      <% mealItems.forEach(function(mealItem) { %>
+        <div>
+          <input type="hidden" name="mealItemIds" value="<%= mealItem._id %>" />
+          <label for="qty-<%= mealItem._id %>">
+            <%= mealItem.name %> — <%= mealItem.calories %> cal, $<%= mealItem.price %>
+          </label>
+          <input
+            type="number"
+            min="0"
+            value="<%= quantityMap[mealItem._id.toString()] || 0 %>"
+            name="quantities"
+            id="qty-<%= mealItem._id %>"
+          />
+        </div>
+      <% }) %>
+      <button type="submit">Update order</button>
+    </form>
+  </body>
+</html>
