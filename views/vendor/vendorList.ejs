@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head', { title: 'Restaurants' }) %>
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans">
+    <%- include('../partials/navbar') %>
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+      <h1 class="text-2xl font-bold mb-6">Restaurants</h1>
+      <% if (vendors.length === 0) { %>
+        <p class="text-center text-gray-500 border border-dashed border-gray-300 rounded-lg py-12">No restaurants yet.</p>
+      <% } else { %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% vendors.forEach(function(vendor) { %>
+            <a href="/vendors/<%= vendor._id %>" class="block bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+              <h2 class="text-lg font-semibold text-gray-900"><%= vendor.username %></h2>
+            </a>
+          <% }) %>
+        </div>
+      <% } %>
+    </main>
+  </body>
+</html>

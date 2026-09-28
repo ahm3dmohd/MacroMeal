@@ -4,6 +4,7 @@
     <a href="/mealitems" class="font-semibold text-gray-700 hover:text-primary-700">Meal Menu</a>
     <% if (user){ %>
       <% if (user.role === "vendor" || user.role === "admin") { %>
+        <a href="/vendors" class="font-semibold text-gray-700 hover:text-primary-700">Restaurants</a>
   <a href="/mealitems/dashboard" class="font-semibold text-gray-700 hover:text-primary-700">My Restaurant</a>
 <% } %>
     <a href="/orders" class="font-semibold text-gray-700 hover:text-primary-700">My Orders</a>

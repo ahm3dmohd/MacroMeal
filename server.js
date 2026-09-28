@@ -58,6 +58,7 @@ app.use('/auth',authController)
 app.use('/',indexController)
 app.use('/mealitems', mealItemsController)
 app.use('/orders', orderController)
+app.use("/vendors", require("./routes/vendor.routes.js"));
 
 
 
