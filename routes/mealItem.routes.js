@@ -16,6 +16,14 @@ router.get("/new", isSignedIn, (req, res) => {
   res.render("mealItems/mealCreate.ejs");
 });
 
+router.get("/dashboard", isSignedIn, async (req, res) => {
+  if (req.session.user.role !== "vendor" && req.session.user.role !== "admin") {
+    return res.send("Only vendors can view a dashboard.");
+  }
+  const mealItems = await MealItem.find({ vendor: req.session.user._id });
+  res.render("mealItems/vendorDash.ejs", { mealItems });
+});
+
 router.post("/", isSignedIn, async (req, res) => {
   if (req.session.user.role !== "vendor" && req.session.user.role !== "admin") {
     return res.send("Only vendors can create meal items.");

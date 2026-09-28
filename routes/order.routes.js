@@ -88,7 +88,7 @@ router.get("/:id/edit", isSignedIn, async (req, res) => {
 router.put("/:id", isSignedIn, async (req, res) => {
   const order = await Order.findById(req.params.id);
   if (!order.owner.equals(req.session.user._id)) {
-    return res.send("You are not authorized to update this order.");
+    return res.send("You are not allowed to update this order.");
   }
 
   const mealItemIds = [].concat(req.body.mealItemIds || []);
