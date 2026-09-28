@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Sign In</title>
+    <%- include('../partials/head', { title: 'Sign In' }) %>
   </head>
-  <body>
+  <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
-    <h1>Sign in</h1>
-    <form action="/auth/sign-in" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" />
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <button type="submit">Sign in</button>
-    </form>
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+      <h1 class="text-2xl font-bold mb-6">Sign in</h1>
+      <form action="/auth/sign-in" method="POST" class="max-w-md bg-white rounded-lg shadow p-8 space-y-4">
+        <div>
+          <label for="username" class="block text-sm font-semibold text-gray-700 mb-1">Username:</label>
+          <input type="text" name="username" id="username" class="block w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-primary-600" />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">Password:</label>
+          <input type="password" name="password" id="password" class="block w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-primary-600" />
+        </div>
+        <button type="submit" class="bg-primary-700 hover:bg-primary-800 text-white font-semibold px-5 py-2.5 rounded-lg transition">Sign in</button>
+      </form>
+    </main>
   </body>
 </html>

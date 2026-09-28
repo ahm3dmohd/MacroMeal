@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Order Details</title>
+    <%- include('../partials/head', { title: 'Order Details' }) %>
   </head>
-  <body>
+  <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
-    <h1>Order from <%= order.createdAt.toDateString() %></h1>
-    <p>Status: <%= order.status %></p>
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+      <div class="max-w-xl bg-white rounded-lg shadow p-8">
+        <h1 class="text-2xl font-bold mb-1">Order from <%= order.createdAt.toDateString() %></h1>
+        <span class="inline-block text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4 <%= order.status === 'pending' ? 'bg-gray-600' : order.status === 'preparing' ? 'bg-amber-700' : 'bg-primary-700' %>"><%= order.status %></span>
 
-    <h2>Items</h2>
-    <ul>
-      <% order.items.forEach(function(item) { %>
-        <li><%= item.quantity %> x <%= item.mealItem.name %></li>
-      <% }) %>
-    </ul>
+        <h2 class="text-lg font-semibold mt-4 mb-2">Items</h2>
+        <ul class="divide-y divide-gray-100 mb-6">
+          <% order.items.forEach(function(item) { %>
+            <li class="py-2 text-gray-700"><%= item.quantity %> x <%= item.mealItem.name %></li>
+          <% }) %>
+        </ul>
 
-    <h2>Nutrition Totals</h2>
-    <p>Calories: <%= order.totalCalories %></p>
-    <p>Protein: <%= order.totalProtein %>g</p>
-    <p>Carbs: <%= order.totalCarbs %>g</p>
-    <p>Fat: <%= order.totalFat %>g</p>
-    <p>Total Price: $<%= order.totalPrice.toFixed(2) %></p>
+        <h2 class="text-lg font-semibold mb-2">Nutrition Totals</h2>
+        <dl class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
+          <div>
+            <dt class="text-sm font-semibold text-gray-500">Calories</dt>
+            <dd class="text-gray-900"><%= order.totalCalories %></dd>
+          </div>
+          <div>
+            <dt class="text-sm font-semibold text-gray-500">Protein</dt>
+            <dd class="text-gray-900"><%= order.totalProtein %>g</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-semibold text-gray-500">Carbs</dt>
+            <dd class="text-gray-900"><%= order.totalCarbs %>g</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-semibold text-gray-500">Fat</dt>
+            <dd class="text-gray-900"><%= order.totalFat %>g</dd>
+          </div>
+          <div>
+            <dt class="text-sm font-semibold text-gray-500">Total Price</dt>
+            <dd class="text-gray-900">$<%= order.totalPrice.toFixed(2) %></dd>
+          </div>
+        </dl>
 
-    <a href="/orders/<%= order._id %>/edit">Edit</a>
-    <form action="/orders/<%= order._id %>?_method=DELETE" method="post">
-      <button type="submit">Delete</button>
-    </form>
+        <div class="flex gap-3">
+          <a href="/orders/<%= order._id %>/edit" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-4 py-2 rounded-lg transition">Edit</a>
+          <form action="/orders/<%= order._id %>?_method=DELETE" method="post">
+            <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-semibold px-4 py-2 rounded-lg transition">Delete</button>
+          </form>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

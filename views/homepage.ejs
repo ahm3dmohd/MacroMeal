@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Home</title>
+  <%- include('./partials/head', { title: 'MacroMeal' }) %>
 </head>
-<body>
-    <%- include('./partials/navbar') %>
-
-    <h1>Welcome to my Website</h1>
-
+<body class="bg-gray-50 text-gray-900 font-sans">
+  <%- include('./partials/navbar') %>
+  <main class="max-w-5xl mx-auto px-4 pb-12">
+    <section class="text-center py-16">
+      <h1 class="text-4xl font-bold mb-4">Eat smart with MacroMeal</h1>
+      <p class="text-lg text-gray-600 max-w-xl mx-auto mb-8">Order diet-friendly meals and automatically track calories, protein, carbs, and fat for every order you place.</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="/mealitems" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-6 py-3 rounded-lg transition">Browse the menu</a>
+        <% if (!user) { %>
+          <a href="/auth/sign-up" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-6 py-3 rounded-lg transition">Sign up</a>
+        <% } %>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <title>Meal Menu</title>
+    <%- include('../partials/head', { title: 'Meal Menu' }) %>
   </head>
-  <body>
+  <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
-    <h1>Meal Menu</h1>
-    <% if (user && (user.role === "vendor" || user.role === "admin")) { %>
-      <a href="/mealitems/new">Add a meal item</a>
-    <% } %>
-    <ul>
-      <% mealItems.forEach(function(mealItem) { %>
-        <li>
-          <a href="/mealitems/<%= mealItem._id %>"><%= mealItem.name %></a>
-          — <%= mealItem.category %> — $<%= mealItem.price %> (<%= mealItem.calories %> cal)
-        </li>
-      <% }) %>
-    </ul>
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+      <h1 class="text-2xl font-bold mb-4">Meal Menu</h1>
+      <% if (user && (user.role === "vendor" || user.role === "admin")) { %>
+        <a href="/mealitems/new" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-5 py-2.5 rounded-lg mb-8 transition">Add a meal item</a>
+      <% } %>
+
+      <% if (mealItems.length === 0) { %>
+        <p class="text-center text-gray-500 border border-dashed border-gray-300 rounded-lg py-12">No meals on the menu yet.</p>
+      <% } else { %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% mealItems.forEach(function(mealItem) { %>
+            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+              <span class="inline-block bg-primary-700 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><%= mealItem.category %></span>
+              <h2 class="text-lg font-semibold mb-1">
+                <a href="/mealitems/<%= mealItem._id %>" class="text-gray-900 hover:text-primary-700"><%= mealItem.name %></a>
+              </h2>
+              <p class="text-gray-600">$<%= mealItem.price %> — <%= mealItem.calories %> cal</p>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </main>
   </body>
 </html>
