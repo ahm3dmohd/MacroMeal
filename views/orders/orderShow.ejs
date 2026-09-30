@@ -6,8 +6,8 @@
   <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
     <main class="max-w-5xl mx-auto px-4 pb-12">
-      <article class="max-w-xl bg-white rounded-lg shadow p-8">
-        <h1 class="text-2xl font-bold mb-1">Order from <%= order.createdAt.toDateString() %></h1>
+      <article class="max-w-xl bg-white rounded-lg shadow p-6 sm:p-8">
+        <h1 class="text-xl sm:text-2xl font-bold mb-1">Order from <%= order.createdAt.toDateString() %></h1>
         <span class="inline-block text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4 <%= order.status === 'pending' ? 'bg-gray-600' : order.status === 'preparing' ? 'bg-amber-700' : 'bg-primary-700' %>"><%= order.status %></span>
 
         <h2 class="text-lg font-semibold mt-4 mb-2">Items</h2>
@@ -18,7 +18,7 @@
         </ul>
 
         <h2 class="text-lg font-semibold mb-2">Nutrition Totals</h2>
-        <dl class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
+        <dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 mb-6">
           <div>
             <dt class="text-sm font-semibold text-gray-500">Calories</dt>
             <dd class="text-gray-900"><%= order.totalCalories %></dd>
