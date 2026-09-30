@@ -52,14 +52,13 @@ app.use(passUserToView)
 
 
 
-
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
 app.use('/mealitems', mealItemsController)
 app.use('/orders', orderController)
 app.use("/vendors", require("./routes/vendor.routes.js"));
-
+app.use("/admin", require("./routes/admin.routes.js"));
 
 
 

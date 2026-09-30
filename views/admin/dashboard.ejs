@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head', { title: 'Admin Dashboard' }) %>
+  </head>
+  <body class="bg-gray-50 text-gray-900 font-sans">
+    <%- include('../partials/navbar') %>
+    <main class="max-w-5xl mx-auto px-4 pb-12">
+      <h1 class="text-2xl font-bold mb-6">Admin Dashboard</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <a href="/admin/users" class="block bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+          <h2 class="text-lg font-semibold mb-1">Users</h2>
+          <p class="text-gray-600">Manage user roles</p>
+        </a>
+        <a href="/admin/orders" class="block bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+          <h2 class="text-lg font-semibold mb-1">Orders</h2>
+          <p class="text-gray-600">View and update every order</p>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>

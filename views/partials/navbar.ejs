@@ -2,11 +2,14 @@
   <div class="max-w-5xl mx-auto px-4 py-4 flex flex-wrap items-center gap-6">
     <a href="/" class="text-lg font-bold text-primary-700 hover:text-primary-800">MacroMeal</a>
     <a href="/mealitems" class="font-semibold text-gray-700 hover:text-primary-700">Meal Menu</a>
+    <a href="/vendors" class="font-semibold text-gray-700 hover:text-primary-700">Restaurants</a>
     <% if (user){ %>
       <% if (user.role === "vendor" || user.role === "admin") { %>
-        <a href="/vendors" class="font-semibold text-gray-700 hover:text-primary-700">Restaurants</a>
-  <a href="/mealitems/dashboard" class="font-semibold text-gray-700 hover:text-primary-700">My Restaurant</a>
-<% } %>
+        <a href="/mealitems/dashboard" class="font-semibold text-gray-700 hover:text-primary-700">My Restaurant</a>
+      <% } %>
+      <% if (user.role === "admin") { %>
+        <a href="/admin" class="font-semibold text-gray-700 hover:text-primary-700">Admin</a>
+      <% } %>
     <a href="/orders" class="font-semibold text-gray-700 hover:text-primary-700">My Orders</a>
     <a href="/auth/sign-out" class="ml-auto font-semibold text-gray-700 hover:text-primary-700">Logout</a>
     <% } else{ %>

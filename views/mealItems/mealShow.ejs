@@ -9,6 +9,7 @@
       <div class="max-w-xl bg-white rounded-lg shadow p-8">
         <h1 class="text-2xl font-bold mb-2"><%= mealItem.name %></h1>
         <p class="text-gray-600 mb-4"><%= mealItem.description %></p>
+        <p class="text-sm text-gray-500 mb-4">by <a href="/vendors/<%= mealItem.vendor._id %>" class="text-primary-700 hover:text-primary-800"><%= mealItem.vendor.username %></a></p>
         <dl class="grid grid-cols-2 gap-x-6 gap-y-3 mb-6">
           <div>
             <dt class="text-sm font-semibold text-gray-500">Category</dt>
