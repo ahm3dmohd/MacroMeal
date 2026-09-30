@@ -12,7 +12,7 @@
           <div class="flex items-center justify-between gap-4 border-b border-gray-100 pb-3">
             <input type="hidden" name="mealItemIds" value="<%= mealItem._id %>" />
             <label for="qty-<%= mealItem._id %>" class="text-sm text-gray-700">
-              <span class="font-semibold"><%= mealItem.name %></span> — <%= mealItem.calories %> cal, $<%= mealItem.price %>
+              <span class="font-semibold"><%= mealItem.name %></span> — <%= mealItem.calories %> cal, <%= mealItem.price.toFixed(3) %> BHD
             </label>
             <input
               type="number"

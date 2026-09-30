@@ -20,7 +20,7 @@
                 <h2 class="text-lg font-semibold mb-1">
                   <a href="/orders/<%= order._id %>" class="text-gray-900 hover:text-primary-700">Order from <%= order.createdAt.toDateString() %></a>
                 </h2>
-                <p class="text-gray-600">$<%= order.totalPrice.toFixed(2) %></p>
+                <p class="text-gray-600"><%= order.totalPrice.toFixed(3) %> BHD</p>
               </article>
             </li>
           <% }) %>
