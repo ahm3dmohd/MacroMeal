@@ -6,7 +6,7 @@
   <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
     <main class="max-w-5xl mx-auto px-4 pb-12">
-      <div class="max-w-xl bg-white rounded-lg shadow p-8">
+      <article class="max-w-xl bg-white rounded-lg shadow p-8">
         <h1 class="text-2xl font-bold mb-2"><%= mealItem.name %></h1>
         <p class="text-gray-600 mb-4"><%= mealItem.description %></p>
         <p class="text-sm text-gray-500 mb-4">by <a href="/vendors/<%= mealItem.vendor._id %>" class="text-primary-700 hover:text-primary-800"><%= mealItem.vendor.username %></a></p>
@@ -40,12 +40,12 @@
         <% if (user && mealItem.vendor._id.equals(user._id)) { %>
           <div class="flex gap-3">
             <a href="/mealitems/<%= mealItem._id %>/edit" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-4 py-2 rounded-lg transition">Edit</a>
-            <form action="/mealitems/<%= mealItem._id %>?_method=DELETE" method="post">
+            <form action="/mealitems/<%= mealItem._id %>?_method=DELETE" method="post" onsubmit="return confirm('Delete this meal item? This cannot be undone.');">
               <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-semibold px-4 py-2 rounded-lg transition">Delete</button>
             </form>
           </div>
         <% } %>
-      </div>
+      </article>
     </main>
   </body>
 </html>

@@ -10,13 +10,15 @@
       <% if (vendors.length === 0) { %>
         <p class="text-center text-gray-500 border border-dashed border-gray-300 rounded-lg py-12">No restaurants yet.</p>
       <% } else { %>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <% vendors.forEach(function(vendor) { %>
-            <a href="/vendors/<%= vendor._id %>" class="block bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
-              <h2 class="text-lg font-semibold text-gray-900"><%= vendor.username %></h2>
-            </a>
+            <li>
+              <a href="/vendors/<%= vendor._id %>" class="block bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+                <h2 class="text-lg font-semibold text-gray-900"><%= vendor.username %></h2>
+              </a>
+            </li>
           <% }) %>
-        </div>
+        </ul>
       <% } %>
     </main>
   </body>

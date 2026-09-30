@@ -14,18 +14,20 @@
       <% if (mealItems.length === 0) { %>
         <p class="text-center text-gray-500 border border-dashed border-gray-300 rounded-lg py-12">No meals on the menu yet.</p>
       <% } else { %>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <% mealItems.forEach(function(mealItem) { %>
-            <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
-              <span class="inline-block bg-primary-700 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><%= mealItem.category %></span>
-              <h2 class="text-lg font-semibold mb-1">
-                <a href="/mealitems/<%= mealItem._id %>" class="text-gray-900 hover:text-primary-700"><%= mealItem.name %></a>
-              </h2>
-              <p class="text-gray-600">$<%= mealItem.price %> — <%= mealItem.calories %> cal</p>
-              <p class="text-xs text-gray-400 mt-1">by <a href="/vendors/<%= mealItem.vendor._id %>" class="hover:text-primary-700"><%= mealItem.vendor.username %></a></p>
-            </div>
+            <li>
+              <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg hover:-translate-y-1 transition">
+                <span class="inline-block bg-primary-700 text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><%= mealItem.category %></span>
+                <h2 class="text-lg font-semibold mb-1">
+                  <a href="/mealitems/<%= mealItem._id %>" class="text-gray-900 hover:text-primary-700"><%= mealItem.name %></a>
+                </h2>
+                <p class="text-gray-600">$<%= mealItem.price %> — <%= mealItem.calories %> cal</p>
+                <p class="text-xs text-gray-400 mt-1">by <a href="/vendors/<%= mealItem.vendor._id %>" class="hover:text-primary-700"><%= mealItem.vendor.username %></a></p>
+              </article>
+            </li>
           <% }) %>
-        </div>
+        </ul>
       <% } %>
     </main>
   </body>

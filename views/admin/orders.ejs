@@ -10,9 +10,9 @@
       <% if (orders.length === 0) { %>
         <p class="text-center text-gray-500 border border-dashed border-gray-300 rounded-lg py-12">No orders yet.</p>
       <% } else { %>
-        <div class="bg-white rounded-lg shadow divide-y divide-gray-100">
+        <ul class="bg-white rounded-lg shadow divide-y divide-gray-100">
           <% orders.forEach(function(order) { %>
-            <div class="flex items-center justify-between gap-4 p-4">
+            <li class="flex items-center justify-between gap-4 p-4">
               <div>
                 <p class="font-semibold"><%= order.owner.username %> — <%= order.createdAt.toDateString() %></p>
                 <p class="text-sm text-gray-500">$<%= order.totalPrice.toFixed(2) %></p>
@@ -25,9 +25,9 @@
                 </select>
                 <button type="submit" class="text-sm font-semibold text-primary-700 hover:text-primary-800">Update</button>
               </form>
-            </div>
+            </li>
           <% }) %>
-        </div>
+        </ul>
       <% } %>
     </main>
   </body>

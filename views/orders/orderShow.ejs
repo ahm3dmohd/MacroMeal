@@ -6,7 +6,7 @@
   <body class="bg-gray-50 text-gray-900 font-sans">
     <%- include('../partials/navbar') %>
     <main class="max-w-5xl mx-auto px-4 pb-12">
-      <div class="max-w-xl bg-white rounded-lg shadow p-8">
+      <article class="max-w-xl bg-white rounded-lg shadow p-8">
         <h1 class="text-2xl font-bold mb-1">Order from <%= order.createdAt.toDateString() %></h1>
         <span class="inline-block text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-4 <%= order.status === 'pending' ? 'bg-gray-600' : order.status === 'preparing' ? 'bg-amber-700' : 'bg-primary-700' %>"><%= order.status %></span>
 
@@ -43,11 +43,11 @@
 
         <div class="flex gap-3">
           <a href="/orders/<%= order._id %>/edit" class="inline-block bg-primary-700 hover:bg-primary-800 text-white font-semibold px-4 py-2 rounded-lg transition">Edit</a>
-          <form action="/orders/<%= order._id %>?_method=DELETE" method="post">
+          <form action="/orders/<%= order._id %>?_method=DELETE" method="post" onsubmit="return confirm('Delete this order? This cannot be undone.');">
             <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-semibold px-4 py-2 rounded-lg transition">Delete</button>
           </form>
         </div>
-      </div>
+      </article>
     </main>
   </body>
 </html>
